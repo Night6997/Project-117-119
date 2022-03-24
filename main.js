@@ -21,7 +21,7 @@ quick_draw_data_set=["aircraft carrier","airplane","alarm clock","ambulance","an
 "waterslide","whale","wheel","windmill","wine bottle","wine glass","wristwatch","yoga","zebra","zigzag"]
 
 
-random_number= Math.floor((Math.random(quick_draw_data_set)*array_1.length)+1);
+random_number= Math.floor((Math.random(quick_draw_data_set)*quick_draw_data_set.length)+1);
 console.log(random_number);
 elementOfArray=quick_draw_data_set[random_number];
 document.getElementById("p3").innerHTML="Sketch to be drawn is "+elementOfArray;
@@ -73,7 +73,7 @@ function draw(){
 
 function check_sketch(){
 
-    if(drawn_sketch!==sketchToBeChecked){
+    if(drawn_sketch!=sketchToBeChecked){
         
         timer_counter++
 
