@@ -34,15 +34,21 @@
     <h1>Sketch Identification
     <button class="btn btn-info" data-toggle="modal" data-target="#myModal" id="OpenModalBtn">Sketches</button>
     </h1>
-    <p class="label" id="p1">Label: </p>
+    <p class="label" id="p1">Your sketch: </p>
     <br><br>
     <p class="label" id="p2">Confidence: </p>
     <br><br>
     <p class="label" id="p3">Sketch to be drawn</p>
     <br><br>
+    <p class="label">Choose the color you want to draw with</p>
+    <br><br>
+    <span><button id="buttonRed" onclick=colorRed()></button></span>
+    <span><button id="buttonGreen" onclick=colorGreen()></button></span>
+    <span><button id="buttonBlue" onclick=colorBlue()></button></span>
+    <br><br>
     <span id="span1"><p class="label" id="pScore">Score:</p>
     <p class="label" id="pScoreValue"></p></span>
-    <span id="span2"><p class="label" id="pTimer">Score:</p>
+    <span id="span2"><p class="label" id="pTimer">Timer:</p>
     <p class="label" id="pTimerValue"></p></span>
   </center>
 <script src="main.js"></script>

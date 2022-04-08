@@ -32,20 +32,43 @@ timer_check="";
 drawn_sketch="";
 answer_holder="";
 score=0;
+color=0;
+function preload(){
+
+    classifier=ml5.imageClassifier('DoodleNet');
+
+}
 
 function setup(){
 
-    canvas=createCanvas(280,280);
-    canvas.center();
+    canvas=createCanvas(500,500);
+    canvas.position(715,375);
     background("white");
     canvas.mouseReleased(classifycanvas);
     synth = window.speechSynthesis;
+}
+function colorRed(){
+
+    color=255,0,0;
+    console.log(color);
+}
+
+function colorBlue(){
+
+    color=0,0,255;
+    console.log(color);
+}
+
+function colorGreen(){
+
+    color=0,255,0;
+    console.log(color);
 }
 
 function updateCanvas(){
 
     background("white");
-    random_number= Math.floor((Math.random(quick_draw_data_set)*array_1.length)+1);
+    random_number=Math.floor((Math.random(quick_draw_data_set)*array_1.length)+1);
     console.log(random_number);
     elementOfArray=quick_draw_data_set[random_number];
     document.getElementById("p3").innerHTML="Sketch to be drawn is "+elementOfArray;
@@ -60,6 +83,13 @@ function preload(){
 }
 
 function draw(){
+    strokeWeight(10);
+    stroke(0);
+    if(mouseIsPressed){
+
+        line(pmouseX,pmouseY,mouseX,mouseY);
+
+    }
     check_sketch();
     if(drawn_sketch==sketchToBeChecked){
 
@@ -80,7 +110,7 @@ function check_sketch(){
     }
     document.getElementById("pTimerValue").innerHTML=timer_counter;
     console.log(timer_counter);
-    if(timer_counter>400){
+    if(timer_counter>399){
 
         timer_counter=0;
         timer_check="completed";
@@ -90,8 +120,9 @@ function check_sketch(){
 
         timer_check="";
         answer_holder="";
+        document.getElementById("pTimerValue").innerHTML=timer_counter;
         updateCanvas();
-
+       
     }
 
 }
@@ -99,6 +130,23 @@ function check_sketch(){
 function classifycanvas(){
 
     classifier.classify(canvas,gotResults);
+
+}
+
+function gotResults(results){
+
+    if(error){
+
+        console.error(error);
+
+    }
+    if(results){
+
+        console.log(results);
+        drawn_sketch=results[0].label;
+        document.getElementById("p1").innerHTML="Your sketch: "+drawn_sketch;
+        document.getElementById("p2").innerHTML="Confidence: "+Math.round(results[0].confidence*100)+"%";
+    }
 
 }
 
